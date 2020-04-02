@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:100');
+
+.bodyHeader{
+    height: 150px;
+    width: 100%;
+    position: fixed;
+    background-color: #202529;
+    z-index: 100;
+}
+
+.logo{
+    height: 150px;
+    padding: 0;
+    margin: auto;
+}
+
+.button-logo{
+    cursor: pointer;
+    padding: 0;
+    background-size: cover;
+    border: 0;
+    height: 150px;
+    outline: none;
+    user-select: none;
+}
+
+.button{
+    float: right;
+    margin: 40px 20px 0 20px;
+    height: 60px;
+    background-color: transparent;
+    color: white;
+    border: 1px solid #202529;
+    border-radius: 10%;
+    font-size: 26px;
+    font-family: Roboto;
+    cursor: pointer;
+    outline: none;
+    padding: 0 20px 0 20px;
+    user-select: none;
+
+}
+
+.button:hover{
+    font-size: 29px;
+    margin-right: 12px;
+    text-shadow: rgba(255, 255, 255, 0.5) 1px 1px 0;
+}
+
+.text{
+    float: right;
+    margin-top: 40px;
+    color: white;
+    font-size: 45px;
+    font-family: Roboto;
+    user-select: none;
+}

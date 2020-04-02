@@ -1,0 +1,58 @@
+.log-in{
+    #position: relative;
+    #top: -50%;
+    margin: 0 auto;
+    width: 500px;
+    height: 400px;
+}
+
+.input-field{
+    display: block;
+    width: 90%;
+    height: 50px;
+    border-radius: 5px;
+    color: #202529;
+    margin: 20px auto 20px auto;
+    font-size: 36px;
+    padding-left: 10px;
+    padding-right: 10px;
+    outline: none;
+}
+
+.submit-button{
+    width: 40%;
+    margin: 40px auto auto auto;
+    display: block;
+    height: 100px;
+    background-color: transparent;
+    color: white;
+    border: 1px solid white;
+    border-radius: 2%;
+    font-size: 30px;
+    font-family: Roboto;
+    cursor: pointer;
+    outline: none;
+    user-select: none;
+}
+
+.submit-button:hover{
+    background-color: rgba(100%, 100%, 100%, 0.1);
+}
+
+.to-register-button{
+    display: block;
+    color: white;
+    margin: 40px auto auto auto;
+    cursor: pointer;
+    background-color: #202529;
+    outline: none;
+    border: 0px;
+    font-family: Roboto;
+    font-size: 26px;
+    user-select: none;
+}
+
+.to-register-button:hover{
+    font-size: 27px;
+    text-shadow: rgba(255, 255, 255, 0.5) 1px 1px 0;
+}

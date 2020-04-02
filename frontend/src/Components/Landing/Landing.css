@@ -1,0 +1,42 @@
+
+.bodyLanding{
+    padding-top: 150px;
+    display: flex;
+    height: 800px;
+    background-image: url("./Background.png");
+}
+
+.landing-content{
+    margin-left: 50%;
+    margin-right: 5%;
+
+}
+
+.slogan{
+    color: white;
+    font-size: 65px;
+    font-family: Roboto;
+    text-shadow: 1px 1px 2px black, 0 0 1em black;
+}
+
+.get-address-button{
+    float: right;
+    margin: -40px 250px 0 20px;
+    height: 90px;
+    background-color: #202529;
+    color: white;
+    border: 1px solid white;
+    border-radius: 2%;
+    font-size: 30px;
+    font-family: Roboto;
+    cursor: pointer;
+    outline: none;
+    padding: 20px;
+    background-color: transparent;
+    user-select: none;
+}
+
+.get-address-button:hover{
+    background-color: rgba(100%, 100%, 100%, 0.1);
+
+}

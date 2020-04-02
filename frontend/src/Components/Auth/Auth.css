@@ -1,0 +1,16 @@
+.Auth{
+    display: table;
+    height: 1000px;
+    position: absolute;
+    overflow: hidden;
+    width: 100%;
+    background-color: #202529;
+    color: white;
+}
+
+.helper{
+    #position: absolute;
+    #top: 50%;
+    display: table-cell;
+    vertical-align: middle;
+}
