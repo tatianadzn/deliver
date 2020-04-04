@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import './SignUp.css';
+import {to_authorised} from "../../store/actionCreators";
+import {connect} from "react-redux";
 
 class SignUp extends Component{
     render() {
@@ -14,11 +16,21 @@ class SignUp extends Component{
                     <input type={'text'} className={'input-field'} placeholder={"Почтовый адрес*"}/>
                     <input type={'password'} className={'input-field'} placeholder={"Пароль*"}/>
                     <input type={'password'} className={'input-field'} placeholder={"Повторите пароль*"}/>
-                    <button type={'submit'} className={'submit-button'}>Зарегистрироваться</button>
+                    <button type={'submit'} className={'submit-button'} onClick={() => {this.props.to_authorised()}}>Зарегистрироваться</button>
                 </form>
             </div>
         );
     }
 }
 
-export default SignUp;
+const mapStateToProps = state => {
+    return {
+        isAuthorised: state.isAuthorised
+    };
+};
+
+const mapDispatchToProps = {
+    to_authorised
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp);

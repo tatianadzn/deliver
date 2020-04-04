@@ -1,7 +1,5 @@
+import {applyMiddleware, createStore} from "redux";
+import reducer from './reducer';
+import thunk from 'redux-thunk';
 
-let store = {
-    isAuth: true,
-    isRegister: true
-};
-
-export default store;
+export const store = createStore(reducer, applyMiddleware(thunk));

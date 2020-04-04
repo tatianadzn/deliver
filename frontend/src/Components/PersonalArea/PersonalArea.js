@@ -2,16 +2,16 @@ import React, {Component} from 'react';
 import PersonalCabinet from "../PersonalCabinet/PersonalCabinet";
 import Auth from "../Auth/Auth";
 
-import store from "../../store/store";
+import {connect} from 'react-redux';
 
 class PersonalArea extends Component{
 
     render() {
-        if (store.isAuth){
+        if (this.props.isAuthorised){
             return(
                 <PersonalCabinet/>
             )
-        } else{
+        } else {
             return(
                 <Auth/>
             )
@@ -20,4 +20,11 @@ class PersonalArea extends Component{
     }
 }
 
-export default PersonalArea;
+const mapStateToProps = state => {
+    return {
+        isAuthorised: state.isAuthorised
+    };
+};
+
+
+export default connect(mapStateToProps)(PersonalArea);

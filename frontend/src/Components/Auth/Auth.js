@@ -1,14 +1,14 @@
 import React, {Component} from 'react';
-import LogIn from "../../Containers/LogIn/LogIn";
-import SignUp from "../../Containers/SignUp/SignUp";
+import LogIn from "../LogIn/LogIn";
+import SignUp from "../SignUp/SignUp";
 import './Auth.css'
 
-import store from "../../store/store";
+import {connect} from 'react-redux';
 
 class Auth extends Component{
 
     render() {
-        if (store.isRegister){
+        if (this.props.isRegistered){
             return(
                 <div className={"Auth"}>
                     <div className={"helper"}><LogIn/></div>
@@ -26,4 +26,10 @@ class Auth extends Component{
     }
 }
 
-export default Auth;
+const mapStateToProps = state => {
+    return {
+        isRegistered: state.isRegistered
+    };
+};
+
+export default connect(mapStateToProps)(Auth);
