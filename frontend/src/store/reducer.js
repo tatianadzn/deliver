@@ -1,14 +1,15 @@
 import {
     TO_REGISTERED,
     TO_UNREGISTERED,
-    TO_AUTHORISED,
-    TO_UNAUTHORISED
+    TO_UNAUTHORISED,
+    AUTHORISATION
 } from './actionCreators';
 
 
 const defaultState = {
     isAuthorised: false,
-    isRegistered: true
+    isRegistered: true,
+    user: {}
 };
 
 const reducer = (state = defaultState, action) => {
@@ -24,15 +25,16 @@ const reducer = (state = defaultState, action) => {
                 ...state,
                 isRegistered: false
             };
-        case TO_AUTHORISED:
-            return {
-                ...state,
-                isAuthorised: true
-            };
         case TO_UNAUTHORISED:
             return {
                 ...state,
                 isAuthorised: false
+            };
+        case AUTHORISATION:
+            return {
+                ...state,
+                user: action.payload,
+                isAuthorised: true
             };
         default:
             return state;

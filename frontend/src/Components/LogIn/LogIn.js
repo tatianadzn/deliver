@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import './LogIn.css';
 
 import {connect} from 'react-redux';
-import {to_authorised, to_unregistered} from "../../store/actionCreators";
+import {to_unregistered} from "../../store/actionCreators";
 
 class LogIn extends Component{
 
@@ -12,7 +12,7 @@ class LogIn extends Component{
                 <form>
                     <input type={'text'} className={'input-field'} placeholder={"E-mail"}/>
                     <input type={'password'} className={'input-field'} placeholder={"Пароль"}/>
-                    <button type={'submit'} className={'submit-button'} onClick={() => {this.props.to_authorised()}}>Войти</button>
+                    <button type={'submit'} className={'submit-button'}>Войти</button>
                 </form>
                 <button className={'to-register-button'} onClick={() => {this.props.to_unregistered()}}>Еще не зарегистрированы?</button>
             </div>
@@ -27,7 +27,7 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = {
-    to_authorised, to_unregistered
+    to_unregistered
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(LogIn);

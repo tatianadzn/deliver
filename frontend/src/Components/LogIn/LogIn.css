@@ -6,7 +6,7 @@
     height: 400px;
 }
 
-.input-field{
+.input-field, .input-field-wrong{
     display: block;
     width: 90%;
     height: 50px;
@@ -17,6 +17,15 @@
     padding-left: 10px;
     padding-right: 10px;
     outline: none;
+}
+
+.input-field-wrong::placeholder {
+    color: tomato;
+}
+
+.input-field-wrong {
+    color: red;
+    border: 3px solid darkred;
 }
 
 .submit-button{
