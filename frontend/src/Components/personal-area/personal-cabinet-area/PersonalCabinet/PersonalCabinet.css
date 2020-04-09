@@ -1,7 +1,7 @@
 .personal-cabinet{
-    height: 750px;
+    height: 800px;
     color: white;
     background-color: #202529;
-    border: 1px solid white;
     margin: auto 20px 0 20px;
+    display: flex;
 }

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './SignUp.css';
-import {signUp} from "../../store/actionCreators";
+import {signUp} from '../../../../store/actionCreators';
 import {connect} from "react-redux";
 
 class SignUp extends Component{
@@ -83,7 +83,7 @@ class SignUp extends Component{
         let isCorrect = this.validate(user.email, 'email') && this.validateEmail(user.email, 'email');
         isCorrect &= this.validate(user.last_name, 'last_name') && this.validateCyrillic(user.last_name, 'last_name');
         isCorrect &= this.validate(user.first_name, 'first_name') && this.validateCyrillic(user.first_name, 'first_name');
-        isCorrect &= this.validate(user.address, 'address') && this.validateCyrillic(user.address, 'address');
+        isCorrect &= this.validate(user.address, 'address');
         isCorrect &= this.validate(user.mobile, 'mobile');
 
         if (user.second_name !== '') {
@@ -167,7 +167,14 @@ class SignUp extends Component{
                         : <input type={'password'} name={'repassword'} className={'input-field-wrong'}
                                  placeholder={"Повторите пароль*"}/>
                     }
-                    <button type={'submit'} className={'submit-button'} onClick={this.handleSubmit}>Зарегистрироваться</button>
+
+                    {this.props.isLoading
+                        ? <button type={'submit'} className={'submit-button'} onClick={this.handleSubmit}>
+                            <div className="dot-flashing"></div>
+                        </button>
+                        : <button type={'submit'} className={'submit-button'}
+                                  onClick={this.handleSubmit}>Зарегистрироваться</button>
+                    }
                 </form>
             </div>
         );
@@ -178,7 +185,8 @@ const mapStateToProps = state => {
     return {
         isAuthorised: state.isAuthorised,
         user: state.user,
-        validation: state.validationSignUp
+        validation: state.validationSignUp,
+        isLoading: state.isLoading
     };
 };
 

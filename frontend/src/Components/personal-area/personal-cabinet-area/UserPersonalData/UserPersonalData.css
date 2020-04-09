@@ -1,0 +1,14 @@
+.user-personal-data {
+    width: 40%;
+    height: 100%;
+    font-family: Roboto;
+    font-size: 34px;
+    margin-left: 20px;
+}
+
+.my-address {
+    padding: 20px;
+    margin-left: -21px;
+    text-shadow: rgba(255, 255, 255, 0.5) 1px 1px 0;
+    background-color: rgba(100%, 100%, 100%, 0.1);
+}

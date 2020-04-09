@@ -4,7 +4,8 @@ export const TO_REGISTERED = 'TO_REGISTERED';
 export const TO_UNREGISTERED = 'TO_UNREGISTERED';
 export const TO_UNAUTHORISED = 'TO_UNAUTHORISED';
 export const AUTHORISATION = 'AUTHORISATION';
-
+export const AUTH_INCORRECT = 'AUTH_INCORRECT';
+export const LOADING_STARTED = 'LOADING_STARTED';
 
 export const to_registered = () => ({
     type: TO_REGISTERED
@@ -25,8 +26,17 @@ export const authorisation = (user) => ({
     payload: user
 });
 
+export const auth_incorrect = () => ({
+    type: AUTH_INCORRECT
+});
+
+export const loading_started = () => ({
+    type: LOADING_STARTED
+});
+
 export function signUp(user){
     return(dispatch) => {
+        dispatch(loading_started());
         //check if user already exists
         axios.get('//localhost:8080/authorisation/', { params: { email: user.email } })
             .then(res => {
@@ -51,6 +61,7 @@ export function signUp(user){
                             .catch(err => console.log('Error on create user: ' + err));
 
                     } else {
+                        dispatch(auth_incorrect());
                         console.log('exists');
                     }
             })
@@ -58,13 +69,24 @@ export function signUp(user){
             };
 }
 
-export async function checkIfUserExists(email){
+export function logIn(auth){
     return(dispatch) => {
 
-        axios.get('//localhost:8080/authorisation/', { params: { email: email } })
-            // .then(res => console.log(res.data))
-            .then(res => dispatch(authorisation(res.data)))
-            .catch(err => console.log('Error on check user: ' + err));
+        dispatch(loading_started());
+        axios.get('//localhost:8080/authorisation/', { params: { email: auth.email } })
+            .then(res => {
+                if (res.data !== null) {
+                    if (res.data.password === auth.password){
+                        dispatch(authorisation(res.data));
+                    } else {
+                        dispatch(auth_incorrect());
+                    }
+                } else {
+                    dispatch(auth_incorrect());
+                }
+
+            })
+            .catch(err => console.log('Error on login data: ' + err));
 
 
     }

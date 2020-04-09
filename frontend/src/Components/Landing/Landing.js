@@ -14,7 +14,10 @@ class Landing extends Component{
         return(
             <div className={"bodyLanding"}>
                 <div className={"landing-content"}>
-                    <p className={"slogan"}>Легкий шопинг в США, Турции и Саудовской Аравии!</p>
+                    <div className={"slogan"}>
+                        <p>Легкий</p>
+                        <p className={'middle-text'}>шопинг в США!</p>
+                    </div>
                     <button className={"get-address-button"} onClick={this.ToRegisterForm}>Получить адрес</button>
                 </div>
             </div>

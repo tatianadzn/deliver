@@ -48,6 +48,10 @@
     background-color: rgba(100%, 100%, 100%, 0.1);
 }
 
+.submit-button:active{
+    background-color: rgba(100%, 100%, 100%, 0.5);
+}
+
 .to-register-button{
     display: block;
     color: white;
@@ -55,7 +59,7 @@
     cursor: pointer;
     background-color: #202529;
     outline: none;
-    border: 0px;
+    border: 0;
     font-family: Roboto;
     font-size: 26px;
     user-select: none;
@@ -64,4 +68,9 @@
 .to-register-button:hover{
     font-size: 27px;
     text-shadow: rgba(255, 255, 255, 0.5) 1px 1px 0;
+}
+
+
+.dot-flashing{
+    margin: 0 auto 0 auto;
 }

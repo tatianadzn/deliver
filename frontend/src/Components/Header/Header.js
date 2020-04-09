@@ -52,8 +52,11 @@ class Header extends Component{
                         <img src={logo} className={"logo"} alt="logo"/>
                     </button>
 
+
                     <button className={"button"} onClick={() => {this.props.to_unauthorised()}}>Выйти</button>
-                {/*    Имя и Выйти здесь*/}
+                    <span className={"text"}>|</span>
+                    <button className={"button"} onClick={this.SignUpClick}>{this.props.user_first_name} {this.props.user_last_name}</button>
+
                 </div>
             );
         }
@@ -66,7 +69,9 @@ class Header extends Component{
 const mapStateToProps = state => {
     return {
         isRegistered: state.isRegistered,
-        isAuthorised: state.isAuthorised
+        isAuthorised: state.isAuthorised,
+        user_first_name: state.user.first_name,
+        user_last_name: state.user.last_name
     };
 };
 

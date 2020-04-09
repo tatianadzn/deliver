@@ -2,14 +2,25 @@ import {
     TO_REGISTERED,
     TO_UNREGISTERED,
     TO_UNAUTHORISED,
-    AUTHORISATION
+    AUTHORISATION,
+    AUTH_INCORRECT, LOADING_STARTED
 } from './actionCreators';
 
 
 const defaultState = {
     isAuthorised: false,
     isRegistered: true,
-    user: {}
+    isUserOrder: true,
+    isAuthCorrect: true,
+    isLoading: false,
+    user: {
+        last_name: 'a',
+        first_name: 'a',
+        second_name: 'a',
+        email: 'a',
+        mobile: 'a',
+        address: 'a'
+    }
 };
 
 const reducer = (state = defaultState, action) => {
@@ -34,7 +45,20 @@ const reducer = (state = defaultState, action) => {
             return {
                 ...state,
                 user: action.payload,
-                isAuthorised: true
+                isAuthorised: true,
+                isLoading: false,
+                isAuthCorrect: true
+            };
+        case AUTH_INCORRECT:
+            return {
+                ...state,
+                isAuthCorrect: false,
+                isLoading: false
+            };
+        case LOADING_STARTED:
+            return {
+                ...state,
+                isLoading: true
             };
         default:
             return state;

@@ -21,9 +21,8 @@
 
 .get-address-button{
     float: right;
-    margin: -40px 250px 0 20px;
+    margin: 140px 100px 0 20px;
     height: 90px;
-    background-color: #202529;
     color: white;
     border: 1px solid white;
     border-radius: 2%;
@@ -39,4 +38,12 @@
 .get-address-button:hover{
     background-color: rgba(100%, 100%, 100%, 0.1);
 
+}
+
+.get-address-button:active{
+    background-color: rgba(100%, 100%, 100%, 0.5);
+}
+
+.middle-text{
+    margin: -50px auto auto 200px;
 }
