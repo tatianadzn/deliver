@@ -4,26 +4,27 @@ import {
     TO_UNAUTHORISED,
     AUTHORISATION,
     AUTH_INCORRECT, LOADING_STARTED,
-    CHECKING_PRODUCT_ON, CHECKING_PRODUCT_OFF
+    CHECKING_PRODUCT_ON, CHECKING_PRODUCT_OFF, GET_USER_PRODUCTS, LOADING_PRODUCTS_STARTED, LOADING_PRODUCTS_FINISHED
 } from './actionCreators';
 
 
 const defaultState = {
-    isAuthorised: true,
+    isAuthorised: false,
     isRegistered: true,
     isUserOrder: false,
     isAuthCorrect: true,
     isLoading: false,
+    isProdLoading: false,
     user: {
         last_name: 'a',
         first_name: 'a',
         second_name: 'a',
-        email: 'a',
+        email: 'tatiana22d@gmail.com',
         mobile: 'a',
         address: 'a'
     },
     products: [],
-    allProducts: [{name: 'pr1', date: 'date1'}, {name: 'pr2', date: 'date2'}, {name: 'pr3', date: 'date3'}, {name: 'pr4', date: 'date4'}]
+    allProducts: []
 };
 
 const reducer = (state = defaultState, action) => {
@@ -42,7 +43,17 @@ const reducer = (state = defaultState, action) => {
         case TO_UNAUTHORISED:
             return {
                 ...state,
-                isAuthorised: false
+                isAuthorised: false,
+                user: {
+                    last_name: '',
+                    first_name: '',
+                    second_name: '',
+                    email: '',
+                    mobile: '',
+                    address: ''
+                },
+                products: [],
+                allProducts: []
             };
         case AUTHORISATION:
             return {
@@ -63,6 +74,16 @@ const reducer = (state = defaultState, action) => {
                 ...state,
                 isLoading: true
             };
+        case LOADING_PRODUCTS_STARTED:
+            return {
+                ...state,
+                isProdLoading: true
+            };
+        case LOADING_PRODUCTS_FINISHED:
+            return {
+                ...state,
+                isProdLoading: false
+            };
         case CHECKING_PRODUCT_ON:
             let prods = state.products;
             prods.push(action.payload);
@@ -75,6 +96,11 @@ const reducer = (state = defaultState, action) => {
             return {
                 ...state,
                 products: products
+            };
+        case GET_USER_PRODUCTS:
+            return {
+                ...state,
+                allProducts: [...state.allProducts, {name: action.payload.description, date: action.payload.date}]
             };
         default:
             return state;

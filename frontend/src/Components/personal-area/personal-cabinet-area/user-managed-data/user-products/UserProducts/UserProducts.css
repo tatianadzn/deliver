@@ -1,4 +1,18 @@
 .user-products{
     margin-top: 15px;
     width: 100%;
+    color: white;
+    height: 30px;
+}
+.no-product-msg{
+    height: 100%;
+    width: 326px;
+    display: block;
+    font-family: Roboto;
+    font-size: 26px;
+    margin: 50px auto;
+}
+
+.loader{
+    margin: 160px auto;
 }

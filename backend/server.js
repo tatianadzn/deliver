@@ -20,8 +20,10 @@ connection.once('open', () => {
 });
 
 const authorisationRouter = require('./routes/authorisation');
+const productsRouter = require('./routes/products');
 
 app.use('/authorisation', authorisationRouter);
+app.use('/products', productsRouter);
 
 app.listen(port, () => {
     console.log('Server is running on port: ' + port);

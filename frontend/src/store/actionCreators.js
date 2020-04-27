@@ -8,6 +8,9 @@ export const AUTH_INCORRECT = 'AUTH_INCORRECT';
 export const LOADING_STARTED = 'LOADING_STARTED';
 export const CHECKING_PRODUCT_ON = 'CHECKING_PRODUCT_ON';
 export const CHECKING_PRODUCT_OFF = 'CHECKING_PRODUCT_OFF';
+export const GET_USER_PRODUCTS = 'GET_USER_PRODUCTS';
+export const LOADING_PRODUCTS_STARTED = 'LOADING_PRODUCTS_STARTED';
+export const LOADING_PRODUCTS_FINISHED = 'LOADING_PRODUCTS_FINISHED';
 
 export const to_registered = () => ({
     type: TO_REGISTERED
@@ -44,6 +47,19 @@ export const checking_product_on = product => ({
 export const checking_product_off = product => ({
     type: CHECKING_PRODUCT_OFF,
     payload: product
+});
+
+export const get_user_products = product => ({
+    type: GET_USER_PRODUCTS,
+    payload: product
+});
+
+export const loading_products_started = () => ({
+    type: LOADING_PRODUCTS_STARTED
+});
+
+export const loading_products_finished = () => ({
+    type: LOADING_PRODUCTS_FINISHED
 });
 
 export function signUp(user){
@@ -101,5 +117,22 @@ export function logIn(auth){
             .catch(err => console.log('Error on login data: ' + err));
 
 
+    }
+}
+
+export function getUserProducts(){
+    return(dispatch, getState) => {
+        dispatch(loading_products_started());
+
+        axios.get('//localhost:8080/products/', { params: { email:  getState().user.email} })
+            .then(res => {
+                if (res.data.length !== 0){
+                    res.data.map(prod => {
+                        dispatch(get_user_products(prod));
+                    })
+                }
+                dispatch(loading_products_finished());
+            })
+            .catch(err => console.log('Error on getting user products: ' + err))
     }
 }

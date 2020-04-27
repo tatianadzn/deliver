@@ -15,7 +15,7 @@ const productSchema = new Schema ({
         unique: false
     },
     description: String,
-    date: Date
+    date: String
 });
 
 const Product = mongoose.model('Product', productSchema);
