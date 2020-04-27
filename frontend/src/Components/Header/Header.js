@@ -29,7 +29,7 @@ class Header extends Component{
             top: 930,
             behavior: 'smooth'
         });
-    };
+};
 
 
     render() {

@@ -46,10 +46,10 @@ class SignUp extends Component{
     validate = (userprop, prop) => {
         if (userprop === '')
         {
-            this.setState({[prop]: {value: '', isCorrect: false}});
+            this.setState({[prop]: {value: userprop, isCorrect: false}});
             return false;
         } else {
-            this.setState({[prop]: {value: '', isCorrect: true}});
+            this.setState({[prop]: {value: userprop, isCorrect: true}});
             return true;
         }
     };

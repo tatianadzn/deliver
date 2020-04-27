@@ -3,14 +3,15 @@ import {
     TO_UNREGISTERED,
     TO_UNAUTHORISED,
     AUTHORISATION,
-    AUTH_INCORRECT, LOADING_STARTED
+    AUTH_INCORRECT, LOADING_STARTED,
+    CHECKING_PRODUCT_ON, CHECKING_PRODUCT_OFF
 } from './actionCreators';
 
 
 const defaultState = {
-    isAuthorised: false,
+    isAuthorised: true,
     isRegistered: true,
-    isUserOrder: true,
+    isUserOrder: false,
     isAuthCorrect: true,
     isLoading: false,
     user: {
@@ -20,7 +21,9 @@ const defaultState = {
         email: 'a',
         mobile: 'a',
         address: 'a'
-    }
+    },
+    products: [],
+    allProducts: [{name: 'pr1', date: 'date1'}, {name: 'pr2', date: 'date2'}, {name: 'pr3', date: 'date3'}, {name: 'pr4', date: 'date4'}]
 };
 
 const reducer = (state = defaultState, action) => {
@@ -59,6 +62,19 @@ const reducer = (state = defaultState, action) => {
             return {
                 ...state,
                 isLoading: true
+            };
+        case CHECKING_PRODUCT_ON:
+            let prods = state.products;
+            prods.push(action.payload);
+            return {
+                ...state,
+                products: prods
+            };
+        case CHECKING_PRODUCT_OFF:
+            let products = state.products.filter(x => x !== action.payload);
+            return {
+                ...state,
+                products: products
             };
         default:
             return state;

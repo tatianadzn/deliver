@@ -6,6 +6,8 @@ export const TO_UNAUTHORISED = 'TO_UNAUTHORISED';
 export const AUTHORISATION = 'AUTHORISATION';
 export const AUTH_INCORRECT = 'AUTH_INCORRECT';
 export const LOADING_STARTED = 'LOADING_STARTED';
+export const CHECKING_PRODUCT_ON = 'CHECKING_PRODUCT_ON';
+export const CHECKING_PRODUCT_OFF = 'CHECKING_PRODUCT_OFF';
 
 export const to_registered = () => ({
     type: TO_REGISTERED
@@ -32,6 +34,16 @@ export const auth_incorrect = () => ({
 
 export const loading_started = () => ({
     type: LOADING_STARTED
+});
+
+export const checking_product_on = product => ({
+    type: CHECKING_PRODUCT_ON,
+    payload: product
+});
+
+export const checking_product_off = product => ({
+    type: CHECKING_PRODUCT_OFF,
+    payload: product
 });
 
 export function signUp(user){

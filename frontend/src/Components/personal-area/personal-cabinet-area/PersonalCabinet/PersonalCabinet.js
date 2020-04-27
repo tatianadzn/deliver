@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 
 import UserPersonalData from "../UserPersonalData/UserPersonalData";
-import UserProducts from "../user-managed-data/UserProducts/UserProducts";
+import UserProducts from "../user-managed-data/user-products/UserProducts/UserProducts";
 import UserOrders from "../user-managed-data/UserOrders/UserOrders";
 import './PersonalCabinet.css';
 
