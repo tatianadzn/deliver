@@ -25,21 +25,20 @@
 }
 
 .button{
-    float: right;
-    margin: 40px 20px 0 20px;
-    height: 60px;
-    background-color: transparent;
-    color: white;
-    border: 1px solid #202529;
-    border-radius: 10%;
-    font-size: 26px;
-    font-family: Roboto;
-    cursor: pointer;
-    outline: none;
-    padding: 0 20px 0 20px;
-    user-select: none;
-
-}
+     float: right;
+     margin: 40px 20px 0 20px;
+     height: 60px;
+     background-color: transparent;
+     color: white;
+     border: 1px solid #202529;
+     border-radius: 10%;
+     font-size: 26px;
+     font-family: Roboto;
+     cursor: pointer;
+     outline: none;
+     padding: 0 20px 0 20px;
+     user-select: none;
+ }
 
 .button:hover{
     font-size: 29px;

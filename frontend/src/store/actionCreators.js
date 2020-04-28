@@ -11,6 +11,8 @@ export const CHECKING_PRODUCT_OFF = 'CHECKING_PRODUCT_OFF';
 export const GET_USER_PRODUCTS = 'GET_USER_PRODUCTS';
 export const LOADING_PRODUCTS_STARTED = 'LOADING_PRODUCTS_STARTED';
 export const LOADING_PRODUCTS_FINISHED = 'LOADING_PRODUCTS_FINISHED';
+export const TO_ORDERS = 'TO_ORDERS';
+export const TO_PRODUCTS = 'TO_PRODUCTS';
 
 export const to_registered = () => ({
     type: TO_REGISTERED
@@ -62,6 +64,14 @@ export const loading_products_finished = () => ({
     type: LOADING_PRODUCTS_FINISHED
 });
 
+export const to_orders = () => ({
+    type: TO_ORDERS
+});
+
+export const to_products = () => ({
+    type: TO_PRODUCTS
+});
+
 export function signUp(user){
     return(dispatch) => {
         dispatch(loading_started());
@@ -106,6 +116,7 @@ export function logIn(auth){
                 if (res.data !== null) {
                     if (res.data.password === auth.password){
                         dispatch(authorisation(res.data));
+                        dispatch(getUserProducts());
                     } else {
                         dispatch(auth_incorrect());
                     }

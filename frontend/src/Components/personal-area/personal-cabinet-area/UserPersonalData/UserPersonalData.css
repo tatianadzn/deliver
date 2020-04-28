@@ -1,9 +1,14 @@
-.user-personal-data {
+.left-col {
     height: 900px;
     font-family: Roboto;
     font-size: 34px;
     margin-left: 20px;
-    width: 40%;
+    position: relative;
+    width: 700px;
+}
+
+.personal-data{
+    margin-top: 100px;
 }
 
 .my-address {
@@ -11,4 +16,29 @@
     margin-left: -21px;
     text-shadow: rgba(255, 255, 255, 0.5) 1px 1px 0;
     background-color: rgba(100%, 100%, 100%, 0.1);
+}
+
+.product-order-buttons{
+    float: right;
+}
+
+.product-order-button{
+    float: right;
+    margin: 40px 0 0 0;
+    height: 60px;
+    background-color: transparent;
+    color: white;
+    border: 1px solid transparent;
+    font-size: 26px;
+    font-family: Roboto;
+    cursor: pointer;
+    outline: none;
+    padding: 0 10px 0 10px;
+    user-select: none;
+}
+
+.product-order-button:hover{
+    font-size: 27px;
+    margin-right: -6px;
+    text-shadow: rgba(255, 255, 255, 0.5) 1px 1px 0;
 }

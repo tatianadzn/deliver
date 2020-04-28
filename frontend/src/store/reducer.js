@@ -3,13 +3,19 @@ import {
     TO_UNREGISTERED,
     TO_UNAUTHORISED,
     AUTHORISATION,
-    AUTH_INCORRECT, LOADING_STARTED,
-    CHECKING_PRODUCT_ON, CHECKING_PRODUCT_OFF, GET_USER_PRODUCTS, LOADING_PRODUCTS_STARTED, LOADING_PRODUCTS_FINISHED
+    AUTH_INCORRECT,
+    LOADING_STARTED,
+    CHECKING_PRODUCT_ON,
+    CHECKING_PRODUCT_OFF,
+    GET_USER_PRODUCTS,
+    LOADING_PRODUCTS_STARTED,
+    LOADING_PRODUCTS_FINISHED,
+    TO_ORDERS, TO_PRODUCTS
 } from './actionCreators';
 
 
 const defaultState = {
-    isAuthorised: false,
+    isAuthorised: true,
     isRegistered: true,
     isUserOrder: false,
     isAuthCorrect: true,
@@ -101,6 +107,16 @@ const reducer = (state = defaultState, action) => {
             return {
                 ...state,
                 allProducts: [...state.allProducts, {name: action.payload.description, date: action.payload.date}]
+            };
+        case TO_ORDERS:
+            return {
+                ...state,
+                isUserOrder: true
+            };
+        case TO_PRODUCTS:
+            return {
+                ...state,
+                isUserOrder: false
             };
         default:
             return state;

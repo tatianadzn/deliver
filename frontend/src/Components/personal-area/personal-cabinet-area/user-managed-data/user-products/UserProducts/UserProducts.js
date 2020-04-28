@@ -3,7 +3,6 @@ import React, {Component} from 'react';
 import Product from "../Product/Product";
 import './UserProducts.css';
 import {connect} from "react-redux";
-import {getUserProducts} from "../../../../../../store/actionCreators";
 
 class UserProducts extends Component {
 
@@ -11,10 +10,6 @@ class UserProducts extends Component {
       event.preventDefault();
       console.log(this.props.checkedProducts);
     };
-
-    componentDidMount() {
-        this.props.getUserProducts();
-    }
 
     render() {
         if (this.props.isProdLoading) {
@@ -45,9 +40,12 @@ class UserProducts extends Component {
                 )
             } else {
                 return (
-                    <div className={'no-product-msg'}>
-                        Пока ничего не пришло :(
+                    <div className={'no-product-msg-block'}>
+                        <div className={'no-product-msg'}>
+                            Пока ничего не пришло :(
+                        </div>
                     </div>
+
                 )
             }
         }
@@ -64,8 +62,5 @@ const mapStateToProps = state => {
     };
 };
 
-const mapDispatchToProps = {
-    getUserProducts
-};
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserProducts);
+export default connect(mapStateToProps)(UserProducts);
