@@ -8,14 +8,15 @@ const productSchema = new Schema ({
         required: true,
         unique: false
     },
-    order: {
-        type: Schema.Types.ObjectID,
-        ref: 'Order',
-        required: false,
+    description: String,
+    date: String,
+    status: {
+        type: String,
+        enum: ['NEW', 'ORDERED'],
+        default: 'NEW',
+        required: true,
         unique: false
     },
-    description: String,
-    date: String
 });
 
 const Product = mongoose.model('Product', productSchema);

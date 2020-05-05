@@ -3,12 +3,14 @@ import React, {Component} from 'react';
 import Product from "../Product/Product";
 import './UserProducts.css';
 import {connect} from "react-redux";
+import {createOrder} from "../../../../../../store/actionCreators";
 
 class UserProducts extends Component {
 
     handleClick = event => {
       event.preventDefault();
       console.log(this.props.checkedProducts);
+      this.props.create_order(this.props.checkedProducts);
     };
 
     render() {
@@ -23,11 +25,16 @@ class UserProducts extends Component {
                 return (
                     <div className={'user-products'}>
                         {this.props.products.map(product => {
-                            return (
-                                <Product
-                                    key={product.name}
-                                    product={product}
-                                />)
+                            if (product.status === 'NEW'){
+                                return (
+                                    <Product
+                                        key={product.name}
+                                        product={product}
+                                    />
+                                )
+                            } else {
+                                return null;
+                            }
                         })}
 
                         {this.props.isLoading
@@ -62,5 +69,9 @@ const mapStateToProps = state => {
     };
 };
 
+const mapDispatchToProps = {
+    create_order: createOrder
+};
 
-export default connect(mapStateToProps)(UserProducts);
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserProducts);

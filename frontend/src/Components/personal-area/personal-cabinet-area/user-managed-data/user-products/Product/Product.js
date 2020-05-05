@@ -15,10 +15,10 @@ class Product extends Component{
     handleChecking = () => {
         this.setState({'checked': !this.state.checked});
 
-        if (this.props.products.find(x => x === this.props.product.name) === undefined){
-            this.props.checking_product_on(this.props.product.name)
+        if (this.props.products.find(x => x === this.props.product) === undefined){
+            this.props.checking_product_on(this.props.product)
         } else {
-            this.props.checking_product_off(this.props.product.name);
+            this.props.checking_product_off(this.props.product);
         }
     };
 

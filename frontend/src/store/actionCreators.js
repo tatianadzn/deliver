@@ -9,10 +9,14 @@ export const LOADING_STARTED = 'LOADING_STARTED';
 export const CHECKING_PRODUCT_ON = 'CHECKING_PRODUCT_ON';
 export const CHECKING_PRODUCT_OFF = 'CHECKING_PRODUCT_OFF';
 export const GET_USER_PRODUCTS = 'GET_USER_PRODUCTS';
+export const GET_USER_ORDERS = 'GET_USER_ORDERS';
 export const LOADING_PRODUCTS_STARTED = 'LOADING_PRODUCTS_STARTED';
 export const LOADING_PRODUCTS_FINISHED = 'LOADING_PRODUCTS_FINISHED';
+export const LOADING_ORDERS_STARTED = 'LOADING_ORDERS_STARTED';
+export const LOADING_ORDERS_FINISHED = 'LOADING_ORDERS_FINISHED';
 export const TO_ORDERS = 'TO_ORDERS';
 export const TO_PRODUCTS = 'TO_PRODUCTS';
+export const CREATE_ORDER = 'CREATE_ORDER';
 
 export const to_registered = () => ({
     type: TO_REGISTERED
@@ -56,6 +60,11 @@ export const get_user_products = product => ({
     payload: product
 });
 
+export const get_user_orders = order => ({
+    type: GET_USER_ORDERS,
+    payload: order
+});
+
 export const loading_products_started = () => ({
     type: LOADING_PRODUCTS_STARTED
 });
@@ -64,12 +73,24 @@ export const loading_products_finished = () => ({
     type: LOADING_PRODUCTS_FINISHED
 });
 
+export const loading_orders_started = () => ({
+    type: LOADING_ORDERS_STARTED
+});
+
+export const loading_orders_finished = () => ({
+    type: LOADING_ORDERS_FINISHED
+});
+
 export const to_orders = () => ({
     type: TO_ORDERS
 });
 
 export const to_products = () => ({
     type: TO_PRODUCTS
+});
+
+export const create_order = () => ({
+    type: CREATE_ORDER
 });
 
 export function signUp(user){
@@ -145,5 +166,41 @@ export function getUserProducts(){
                 dispatch(loading_products_finished());
             })
             .catch(err => console.log('Error on getting user products: ' + err))
+    }
+}
+
+export function getUserOrders() {
+    return(dispatch, getState) => {
+        dispatch(loading_orders_started());
+
+        axios.get('//localhost:8080/orders/', { params: { email:  getState().user.email} })
+            .then(res => {
+                if (res.data.length !== 0){
+                    res.data.map(order => {
+                        dispatch(get_user_orders(order));
+                    })
+                }
+                dispatch(loading_orders_finished());
+            })
+            .catch(err => console.log('Error on getting user orders: ' + err))
+    }
+}
+
+export function createOrder(products){
+    return(dispatch, getState) => {
+        const state = getState();
+        let data = {
+            owner: state.user._id,
+            cost: '200$',
+            products: products
+        };
+        axios.post('//localhost:8080/orders/', data)
+            .then(res => {
+                console.log(res.data);
+                dispatch(create_order());
+                dispatch(getUserOrders());
+                dispatch(getUserProducts());
+            })
+            .catch(err => console.log('Error on create order: ' + err));
     }
 }

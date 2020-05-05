@@ -27,7 +27,7 @@
     box-shadow: 0 0 20px rgba(100, 100, 100, .9);
 }
 
-.product-date, .product-name{
+.product-date, .product-name, .cost{
     margin: 0 20px 0 20px;
     font-size: 26px;
     font-family: Roboto;

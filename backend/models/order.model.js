@@ -11,7 +11,7 @@ const orderSchema = new Schema ({
     },
     status: {
         type: String,
-        enum: ['NEW', 'SENT', 'DELIVERED', 'CLOSED'],
+        enum: ['NEW', 'SENT', 'DELIVERED', 'PAID' ,'PAID_DELIVERED', 'CLOSED'],
         default: 'NEW',
         required: true,
         unique: false
@@ -20,6 +20,7 @@ const orderSchema = new Schema ({
         type: String,
         required: false
     },
+    products: [],
     date_of_creation: Date,
     date_of_delivering: Date,
     date_of_closing: Date
