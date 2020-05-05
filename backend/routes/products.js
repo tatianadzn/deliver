@@ -30,7 +30,7 @@ router.route('/').get((req, res) => {
     User.findOne({email: req.query.email})
         .then(user => {
             Product.find({owner: user._id})
-                .then(products => res.json(products))
+                .then(products => res.json(products.filter(prod => prod.status === 'NEW')))
                 .catch(err => res.status(400).json('Error: ' + err))
         })
         .catch(err => res.status(400).json('Error: ' + err));

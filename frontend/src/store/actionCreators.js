@@ -204,3 +204,13 @@ export function createOrder(products){
             .catch(err => console.log('Error on create order: ' + err));
     }
 }
+
+export function updateOrderStatus (orderID, status) {
+    return(dispatch) => {
+        axios.post('//localhost:8080/orders/change-status', {id: orderID, status: status})
+            .then(res => {
+                dispatch(getUserOrders());
+            })
+            .catch(err => console.log('Error on update order status: ' + err));
+    }
+}

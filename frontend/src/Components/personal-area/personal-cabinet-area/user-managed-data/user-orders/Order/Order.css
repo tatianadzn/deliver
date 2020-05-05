@@ -23,3 +23,16 @@
     padding: 15px;
     background-color: rgba(100%, 100%, 100%, 0.1);
 }
+
+.delivery-confirmed-msg-box {
+    margin: 40px auto;
+    display: block;
+    height: 100px;
+    background-color: transparent;
+    color: white;
+    border-radius: 2%;
+    font-size: 30px;
+    font-family: Roboto;
+    user-select: none;
+    text-align: center;
+}
