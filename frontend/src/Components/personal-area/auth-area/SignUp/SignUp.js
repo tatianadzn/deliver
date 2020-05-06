@@ -173,7 +173,9 @@ class SignUp extends Component{
                             <div className="dot-flashing"></div>
                         </button>
                         : <button type={'submit'} className={'submit-button'}
-                                  onClick={this.handleSubmit}>Зарегистрироваться</button>
+                                  onClick={this.handleSubmit}>
+                            Зарегистрироваться
+                        </button>
                     }
                 </form>
             </div>

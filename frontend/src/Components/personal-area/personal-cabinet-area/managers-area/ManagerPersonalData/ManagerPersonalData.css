@@ -1,0 +1,16 @@
+.manager-personal-data {
+    color: white;
+    font-family: Roboto;
+    font-size: 30px;
+    margin: 130px 20px auto 20px;
+    background-color: #202529;
+    height: 130px;
+}
+
+.manager-info-block {
+    float: left;
+}
+
+.button-block {
+    float: right;
+}

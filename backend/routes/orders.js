@@ -36,6 +36,12 @@ router.route('/').get((req, res) => {
         .catch(err => res.status(400).json('Error: ' + err));
 });
 
+router.route('/all').get((req, res) => {
+    Order.find()
+        .then(orders => res.json(orders.filter(order => order.status !== 'CLOSED')))
+        .catch(err => res.status(400).json('Error: ' + err))
+});
+
 router.route('/change-status').post((req, res) => {
 
     let status = req.body.status;

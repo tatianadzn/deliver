@@ -23,12 +23,13 @@ const defaultState = {
     isProdLoading: false,
     isOrdersLoading: false,
     user: {
-        last_name: 'a',
-        first_name: 'a',
+        last_name: 'Иванов',
+        first_name: 'Иван',
         second_name: 'a',
-        email: 'tatiana22d@gmail.com',
+        email: 'tdzenzura@yandex.ru',
         mobile: 'a',
-        address: 'a'
+        address: 'a',
+        user_role: 'MANAGER'
     },
     products: [],
     allProducts: [],
@@ -53,14 +54,7 @@ const reducer = (state = defaultState, action) => {
                 ...state,
                 isAuthorised: false,
                 isUserOrder: false,
-                user: {
-                    last_name: '',
-                    first_name: '',
-                    second_name: '',
-                    email: '',
-                    mobile: '',
-                    address: ''
-                },
+                user: {},
                 products: [],
                 allProducts: [],
                 orders: []

@@ -173,16 +173,30 @@ export function getUserOrders() {
     return(dispatch, getState) => {
         dispatch(loading_orders_started());
 
-        axios.get('//localhost:8080/orders/', { params: { email:  getState().user.email} })
-            .then(res => {
-                if (res.data.length !== 0){
-                    res.data.map(order => {
-                        dispatch(get_user_orders(order));
-                    })
-                }
-                dispatch(loading_orders_finished());
-            })
-            .catch(err => console.log('Error on getting user orders: ' + err))
+        if (getState().user.user_role === 'USER'){
+            axios.get('//localhost:8080/orders/', { params: { email:  getState().user.email} })
+                .then(res => {
+                    if (res.data.length !== 0){
+                        res.data.map(order => {
+                            dispatch(get_user_orders(order));
+                        })
+                    }
+                    dispatch(loading_orders_finished());
+                })
+                .catch(err => console.log('Error on getting user orders: ' + err))
+        } else {
+            axios.get('//localhost:8080/orders/all')
+                .then(res => {
+                    if (res.data.length !== 0){
+                        res.data.map(order => {
+                            dispatch(get_user_orders(order));
+                        })
+                    }
+                    dispatch(loading_orders_finished());
+                })
+                .catch(err => console.log('Error on getting user orders: ' + err))
+        }
+
     }
 }
 
@@ -212,5 +226,15 @@ export function updateOrderStatus (orderID, status) {
                 dispatch(getUserOrders());
             })
             .catch(err => console.log('Error on update order status: ' + err));
+    }
+}
+
+export function addNewProduct(product) {
+    return() => {
+        axios.post('//localhost:8080/products/', {description: product.description, email: product.email})
+            .then(res => {
+                console.log(res.data);
+            })
+            .catch(err => console.log('Error on adding new product: ' + err));
     }
 }
