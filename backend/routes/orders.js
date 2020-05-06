@@ -4,26 +4,34 @@ let User = require('../models/user.model');
 let Product = require('../models/product.model');
 
 router.route('/').post((req, res) => {
-    const newOrder = new Order({
-        owner: req.body.owner,
-        status: 'NEW',
-        cost: req.body.cost,
-        products: req.body.products,
-        date_of_creation: Date.now()
+
+    Order.count({}, function (err, count) {
+        if (err) {
+            console.log(err);
+        } else {
+
+            const newOrder = new Order({
+                _id: count + 1,
+                owner: req.body.owner,
+                status: 'NEW',
+                cost: req.body.cost,
+                products: req.body.products,
+                date_of_creation: Date.now()
+            });
+
+            console.log(newOrder);
+
+            req.body.products.map(product => {
+                Product.findOneAndUpdate({_id: product.id}, {status: 'ORDERED'})
+                    .then(() => console.log('OK'))
+                    .catch(err => res.status(400).json('Error: ' + err));
+            });
+
+            newOrder.save()
+                .then(() => res.json('Order saved'))
+                .catch(err => res.status(400).json('Error: ' + err));
+        }
     });
-
-    console.log(newOrder);
-
-    req.body.products.map(product => {
-        Product.findOneAndUpdate({_id: product.id}, {status: 'ORDERED'})
-            .then(() => console.log('OK'))
-            .catch(err => res.status(400).json('Error: ' + err));
-    });
-
-    newOrder.save()
-        .then(() => res.json('Order saved'))
-        .catch(err => res.status(400).json('Error: ' + err));
-
 });
 
 router.route('/').get((req, res) => {

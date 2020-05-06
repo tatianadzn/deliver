@@ -6,21 +6,31 @@ import {connect} from "react-redux";
 
 class Order extends Component{
 
-    handleClick = event => {
+    handleClickDeliveryConfirm = event => {
         event.preventDefault();
-        console.log(this.props.order);
         this.props.updateOrderStatus(this.props.order._id, 'DELIVERED');
+    };
+
+    handleClickPaymentConfirm = event => {
+        event.preventDefault();
+        this.props.updateOrderStatus(this.props.order._id, 'PAID');
     };
 
     render() {
         return (
             <div className={'order'}>
-                <div className={'product-name'}>
-                    <p className={'order-number'}>Заказ №234567</p>
-                    {this.props.order.status === 'PAID'
-                        ? <p>Оплата подтверждена менеджером</p>
-                        : <p>Оплата не подтверждена менеджером</p>
-                    }
+                <div className={'order-head-box'}>
+                    <p className={'order-number'}>Заказ №{this.props.order._id}</p>
+                    <div className={'right-float'}>
+                        {this.props.user_role === 'USER'
+                            ? this.props.order.status === 'PAID'
+                                ? <p>ОПЛАЧЕНО</p>
+                                : <p>НЕ ОПЛАЧЕНО</p>
+                            : this.props.order.status === 'DELIVERED'
+                                ? <p>ДОСТАВЛЕНО</p>
+                                : <p>НЕ ДОСТАВЛЕНО</p>
+                        }
+                    </div>
                 </div>
                 <div className={'contents'}>
                     {this.props.order.products.map(prod => {
@@ -35,12 +45,21 @@ class Order extends Component{
                 <div className={'cost'}>
                     Стоимость доставки: {this.props.order.cost}
                 </div>
-                <div>
-                    {this.props.order.status === 'DELIVERED'
-                        ? <div className={'delivery-confirmed-msg-box'}>Получение подтверждено</div>
-                        : <button className={'submit-button'} onClick={this.handleClick}>Подтвердить получение</button>
-                    }
-                </div>
+                {this.props.user_role === 'USER'
+                    ? <div>
+                        {this.props.order.status === 'DELIVERED'
+                            ? <div className={'delivery-confirmed-msg-box'}>Получение подтверждено</div>
+                            : <button className={'submit-button'} onClick={this.handleClickDeliveryConfirm}>Подтвердить получение</button>
+                        }
+                    </div>
+                    : <div>
+                        {this.props.order.status === 'PAID'
+                            ? <div className={'delivery-confirmed-msg-box'}>Оплата подтверждена</div>
+                            : <button className={'submit-button'} onClick={this.handleClickPaymentConfirm}>Подтвердить оплату</button>
+                        }
+                    </div>
+                }
+
 
             </div>
         );
@@ -49,7 +68,8 @@ class Order extends Component{
 
 const mapStateToProps = state => {
     return {
-        isOrdersLoading: state.isOrdersLoading
+        isOrdersLoading: state.isOrdersLoading,
+        user_role: state.user.user_role
     };
 };
 

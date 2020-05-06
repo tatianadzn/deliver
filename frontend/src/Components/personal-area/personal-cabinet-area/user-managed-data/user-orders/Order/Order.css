@@ -9,8 +9,21 @@
 
 }
 
+.order-head-box {
+    display: inline-block;
+    font-size: 26px;
+    margin: 0 20px;
+    width: 100%;
+}
+
 .order-number {
     text-shadow: rgba(255, 255, 255, 0.5) 1px 1px 0;
+    display: inline-block;
+}
+
+.right-float {
+    float: right;
+    margin-right: 60px;
 }
 
 .cost {
@@ -36,3 +49,4 @@
     user-select: none;
     text-align: center;
 }
+
