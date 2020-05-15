@@ -43,7 +43,7 @@ class Order extends Component{
                     })}
                 </div>
                 <div className={'cost'}>
-                    Стоимость доставки: {this.props.order.cost}
+                    Стоимость доставки: {Math.ceil(this.props.order.weight * 101)}$
                 </div>
                 {this.props.user_role === 'USER'
                     ? <div>

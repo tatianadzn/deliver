@@ -10,7 +10,13 @@ class UserProducts extends Component {
     handleClick = event => {
       event.preventDefault();
       console.log(this.props.checkedProducts);
-      this.props.create_order(this.props.checkedProducts);
+      let weight = 0;
+      this.props.checkedProducts.map(chProd => {
+          weight += chProd.weight;
+      });
+      if (weight < 30) {
+          this.props.create_order(this.props.checkedProducts);
+      }
     };
 
     render() {

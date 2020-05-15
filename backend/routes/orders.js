@@ -14,8 +14,8 @@ router.route('/').post((req, res) => {
                 _id: count + 1,
                 owner: req.body.owner,
                 status: 'NEW',
-                cost: req.body.cost,
                 products: req.body.products,
+                weight: req.body.weight,
                 date_of_creation: Date.now()
             });
 

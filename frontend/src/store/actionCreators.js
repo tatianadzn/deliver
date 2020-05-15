@@ -203,10 +203,14 @@ export function getUserOrders() {
 export function createOrder(products){
     return(dispatch, getState) => {
         const state = getState();
+        let weight = 0;
+        products.map(prod => {
+            weight += prod.weight;
+        });
         let data = {
             owner: state.user._id,
-            cost: '200$',
-            products: products
+            products: products,
+            weight: weight
         };
         axios.post('//localhost:8080/orders/', data)
             .then(res => {
@@ -231,7 +235,7 @@ export function updateOrderStatus (orderID, status) {
 
 export function addNewProduct(product) {
     return() => {
-        axios.post('//localhost:8080/products/', {description: product.description, email: product.email})
+        axios.post('//localhost:8080/products/', {description: product.description, email: product.email, weight: parseFloat(product.weight)})
             .then(res => {
                 console.log(res.data);
             })

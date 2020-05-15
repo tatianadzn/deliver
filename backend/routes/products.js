@@ -14,7 +14,8 @@ router.route('/').post((req, res) => {
             const newProduct = new Product({
                 owner: user._id,
                 description: req.body.description,
-                date: now
+                date: now,
+                weight: req.body.weight
             });
 
             console.log(newProduct);

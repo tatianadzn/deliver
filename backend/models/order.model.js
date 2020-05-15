@@ -24,7 +24,8 @@ const orderSchema = new Schema ({
     products: [],
     date_of_creation: Date,
     date_of_delivering: Date,
-    date_of_closing: Date
+    date_of_closing: Date,
+    weight: Number
 });
 
 const Order = mongoose.model('Order', orderSchema);

@@ -30,13 +30,16 @@ class Product extends Component{
                         ? <div className={'label-checked'} >
                                 <div className={'product-name'}>{this.props.product.name}</div>
                                 <div className={'product-date'}>{this.props.product.date}</div>
+                                <div className={'product-date'}>{this.props.product.weight}кг</div>
                         </div>
                         : <div className={'label-not-checked'} >
                                 <div className={'product-name'}>{this.props.product.name}</div>
                                 <div className={'product-date'}>{this.props.product.date}</div>
+                                <div className={'product-date'}>{this.props.product.weight}кг</div>
                         </div>
                     }
                 </div>
+
             </div>
         );
     }

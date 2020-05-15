@@ -10,7 +10,8 @@ class AddNewProduct extends Component {
         super(props);
         this.state = {
             description: '',
-            email: ''
+            email: '',
+            weight: ''
         }
     };
 
@@ -23,7 +24,8 @@ class AddNewProduct extends Component {
 
         const product = {
             email: this.state.email,
-            description: this.state.description
+            description: this.state.description,
+            weight: this.state.weight
         };
         this.props.addNewProduct(product);
     };
@@ -34,6 +36,7 @@ class AddNewProduct extends Component {
                 <form onChange={this.handleChange}>
                     <input type={'text'} name={'description'} className={'input-field'} placeholder={"Описание продукта"}/>
                     <input type={'text'} name={'email'} className={'input-field'} placeholder={"Email владельца"}/>
+                    <input type={'text'} name={'weight'} className={'input-field'} placeholder={"Вес товара"}/>
 
                     {this.props.isLoading
                         ? <button type={'submit'} className={'submit-button'} onClick={this.handleSubmit}>

@@ -17,6 +17,7 @@ const productSchema = new Schema ({
         required: true,
         unique: false
     },
+    weight: Number
 });
 
 const Product = mongoose.model('Product', productSchema);

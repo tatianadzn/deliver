@@ -116,7 +116,7 @@ const reducer = (state = defaultState, action) => {
         case GET_USER_PRODUCTS:
             return {
                 ...state,
-                allProducts: [...state.allProducts, {name: action.payload.description, date: action.payload.date, id: action.payload._id, status: action.payload.status}]
+                allProducts: [...state.allProducts, {name: action.payload.description, date: action.payload.date, id: action.payload._id, status: action.payload.status, weight: action.payload.weight}]
             };
         case GET_USER_ORDERS:
             return {
